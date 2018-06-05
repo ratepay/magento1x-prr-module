@@ -1,0 +1,427 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category RatePAY
+ * @package RatePAY_produktratenrechner
+ * @copyright Copyright (c) 2015 RatePAY GmbH (https://www.ratepay.com)
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+
+-->
+
+<config>
+    <sections>
+        <catalog>
+            <groups>
+                <ratepay translate="label comment" module="produktratenrechner">
+                    <label>RatePAY</label>
+                    <sort_order>670</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <frontend_class>complex</frontend_class>
+                    <frontend_model>produktratenrechner/adminhtml_system_config_fieldset_mainsection</frontend_model>
+                    <comment>Initial Text</comment>
+                    <fields>
+                        <ratepay_prr_general type="group" translate="label comment">
+                            <label>General Settings</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>10</sort_order>
+                            <fields>
+                                <round translate="label">
+                                    <label>Round Numbers</label>
+                                    <frontend_type>select</frontend_type>
+                                    <sort_order>70</sort_order>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </round>
+                            </fields>
+                        </ratepay_prr_general>
+                        <ratepay_prr_de type="group" translate="label comment">
+                            <label>Germany</label>
+                            <frontend_type>text</frontend_type>
+                            <method>ratepay_prr_de</method>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>20</sort_order>
+                            <fields>
+                                <active translate="label">
+                                    <label>Module Enabled</label>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>10</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </active>
+
+                                <profile_id translate="label">
+                                    <label>Profile-Id</label>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>20</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </profile_id>
+
+                                <security_code translate="label">
+                                    <label>Security Code</label>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>30</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </security_code>
+
+                                <sandbox translate="label">
+                                    <label>Activate Sandbox</label>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>35</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <comment>Help Sandbox</comment>
+                                </sandbox>
+
+                                <get_config translate="label">
+                                    <frontend_type>button</frontend_type>
+                                    <frontend_model>produktratenrechner/adminhtml_system_config_form_button_profilerequest</frontend_model>
+                                    <sort_order>40</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <comment>Help Get Config</comment>
+                                </get_config>
+
+                                <status translate="label">
+                                    <label>Status RatePAY</label>
+                                    <frontend_type>label</frontend_type>
+                                    <frontend_model>produktratenrechner/adminhtml_system_config_form_label_active</frontend_model>
+                                    <sort_order>45</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </status>
+
+                                <text translate="label">
+                                    <label>Text</label>
+                                    <frontend_type>textarea</frontend_type>
+                                    <sort_order>60</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <comment>Help Text</comment>
+                                </text>
+
+                                <min_price translate="label">
+                                    <label>Minimum Price</label>
+                                    <frontend_type>label</frontend_type>
+                                    <sort_order>80</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </min_price>
+
+                                <max_price translate="label">
+                                    <label>Maximum Price</label>
+                                    <frontend_type>label</frontend_type>
+                                    <sort_order>90</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </max_price>
+
+                                <rate_min translate="label">
+                                    <label>Rate Minimum</label>
+                                    <frontend_type>label</frontend_type>
+                                    <sort_order>92</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </rate_min>
+
+                                <interestrate translate="label">
+                                    <label>Interest Rate</label>
+                                    <frontend_type>label</frontend_type>
+                                    <sort_order>93</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </interestrate>
+
+                                <service_charge translate="label">
+                                    <label>Service Charge</label>
+                                    <frontend_type>label</frontend_type>
+                                    <sort_order>94</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </service_charge>
+
+                                <runtimes translate="label">
+                                    <label>Runtimes</label>
+                                    <frontend_type>label</frontend_type>
+                                    <sort_order>95</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </runtimes>
+
+                                <default_runtime translate="label">
+                                    <label>Default Runtime</label>
+                                    <frontend_type>select</frontend_type>
+                                    <sort_order>100</sort_order>
+                                    <source_model>produktratenrechner/source_defaultruntime</source_model>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <comment>Help Default Runtime</comment>
+                                </default_runtime>
+
+                                <default_runtime_only translate="label">
+                                    <label>Default Runtime Only</label>
+                                    <frontend_type>select</frontend_type>
+                                    <sort_order>110</sort_order>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <comment>Help Default Runtime Only</comment>
+                                </default_runtime_only>
+
+                                <!--<ratepay_rate_advanced_de type="group" translate="label">
+                                    <label>Advanced Settings</label>
+                                    <frontend_class>config-advanced</frontend_class>
+                                    <frontend_type>text</frontend_type>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <sort_order>180</sort_order>
+                                    <fields>
+                                        <specificgroups translate="label">
+                                            <label>Specific Customer Groups</label>
+                                            <frontend_type>multiselect</frontend_type>
+                                            <sort_order>10</sort_order>
+                                            <source_model>produktratenrechner/source_customergroups</source_model>
+                                            <show_in_default>1</show_in_default>
+                                            <show_in_website>1</show_in_website>
+                                            <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Specific Customer Groups</comment>
+                                        </specificgroups>
+                                    </fields>
+                                </ratepay_rate_advanced_de>-->
+                            </fields>
+                        </ratepay_prr_de>
+
+                        <ratepay_prr_at type="group" translate="label comment">
+                            <label>Austria</label>
+                            <frontend_type>text</frontend_type>
+                            <method>ratepay_prr_at</method>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>30</sort_order>
+                            <fields>
+                                <active translate="label">
+                                    <label>Module Enabled</label>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>10</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </active>
+
+                                <profile_id translate="label">
+                                    <label>Profile-Id</label>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>20</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </profile_id>
+
+                                <security_code translate="label">
+                                    <label>Security Code</label>
+                                    <frontend_type>text</frontend_type>
+                                    <sort_order>30</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </security_code>
+
+                                <sandbox translate="label">
+                                    <label>Activate Sandbox</label>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>35</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <comment>Help Sandbox</comment>
+                                </sandbox>
+
+                                <get_config translate="label">
+                                    <frontend_type>button</frontend_type>
+                                    <frontend_model>produktratenrechner/adminhtml_system_config_form_button_profilerequest</frontend_model>
+                                    <sort_order>40</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <comment>Help Get Config</comment>
+                                </get_config>
+
+                                <status translate="label">
+                                    <label>Status RatePAY</label>
+                                    <frontend_type>label</frontend_type>
+                                    <frontend_model>produktratenrechner/adminhtml_system_config_form_label_active</frontend_model>
+                                    <sort_order>45</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </status>
+
+                                <text translate="label">
+                                    <label>Text</label>
+                                    <frontend_type>textarea</frontend_type>
+                                    <sort_order>60</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <comment>Help Text</comment>
+                                </text>
+
+                                <min_price translate="label">
+                                    <label>Minimum Price</label>
+                                    <frontend_type>label</frontend_type>
+                                    <sort_order>80</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </min_price>
+
+                                <max_price translate="label">
+                                    <label>Maximum Price</label>
+                                    <frontend_type>label</frontend_type>
+                                    <sort_order>90</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </max_price>
+
+                                <rate_min translate="label">
+                                    <label>Rate Minimum</label>
+                                    <frontend_type>label</frontend_type>
+                                    <sort_order>92</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </rate_min>
+
+                                <interestrate translate="label">
+                                    <label>Interest Rate</label>
+                                    <frontend_type>label</frontend_type>
+                                    <sort_order>93</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </interestrate>
+
+                                <service_charge translate="label">
+                                    <label>Service Charge</label>
+                                    <frontend_type>label</frontend_type>
+                                    <sort_order>94</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </service_charge>
+
+                                <runtimes translate="label">
+                                    <label>Runtimes</label>
+                                    <frontend_type>label</frontend_type>
+                                    <sort_order>95</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                </runtimes>
+
+                                <default_runtime translate="label">
+                                    <label>Default Runtime</label>
+                                    <frontend_type>select</frontend_type>
+                                    <sort_order>100</sort_order>
+                                    <source_model>produktratenrechner/source_defaultruntime</source_model>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <comment>Help Default Runtime</comment>
+                                </default_runtime>
+
+                                <default_runtime_only translate="label">
+                                    <label>Default Runtime Only</label>
+                                    <frontend_type>select</frontend_type>
+                                    <sort_order>110</sort_order>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <comment>Help Default Runtime Only</comment>
+                                </default_runtime_only>
+
+                                <!--<ratepay_rate_advanced_at type="group" translate="label">
+                                    <label>Advanced Settings</label>
+                                    <frontend_class>config-advanced</frontend_class>
+                                    <frontend_type>text</frontend_type>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store>
+                                    <sort_order>190</sort_order>
+                                    <fields>
+                                        <specificgroups translate="label">
+                                            <label>Specific Customer Groups</label>
+                                            <frontend_type>multiselect</frontend_type>
+                                            <sort_order>10</sort_order>
+                                            <source_model>produktratenrechner/source_customergroups</source_model>
+                                            <show_in_default>1</show_in_default>
+                                            <show_in_website>1</show_in_website>
+                                            <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Specific Customer Groups</comment>
+                                        </specificgroups>
+                                    </fields>
+                                </ratepay_rate_advanced_at>-->
+                            </fields>
+                        </ratepay_prr_at>
+
+                        <version translate="label">
+                            <label>v1.0.0</label>
+                            <frontend_model>adminhtml/system_config_form_field_notification</frontend_model>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </version>
+                    </fields>
+                </ratepay>
+            </groups>
+        </catalog>
+    </sections>
+</config>

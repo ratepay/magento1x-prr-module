@@ -1,0 +1,193 @@
+<?php
+if (!$this->isAvailable()) {
+    return;
+}
+?>
+
+<style>
+    /* Allgemeine Anweisungen */
+    #rp_product_rate_calculator {
+        border: 1px solid #ededed;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+    #rp_product_rate_calculator input {
+        line-height: 0.5;
+    }
+    .rp_headline {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .rp_conditions {
+        margin-bottom: 5px;
+    }
+    .rp_price {
+        color: #3399cc;
+        font-size: 18px;
+    }
+    /* Tabelle */
+    #rp_table tr:nth-child(odd) { background-color: #ddd; }
+    #rp_table tr:nth-child(even) { background-color: #fff; }
+    #rp_table tr {
+        line-height: 25px;
+    }
+    #rp_table td {
+        padding: 5px;
+    }
+    /* Ratenmonate Anweisungen */
+    .rp_choose_rate_months {
+        margin-bottom: 10px;
+    }
+    .rp_rate_month_buttons {
+        background-color: white;
+        border: 1px solid black;
+        color: black;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+    .rp_rate_month_buttons:hover {
+        background-color: #263551; /* RatePAY Blau */
+        color: white;
+    }
+    .rp_rate_month_button_active {
+        background-color: #263551; /* RatePAY Blau */
+        color: white;
+        border: 1px solid black;
+    }
+    .rp_rounded_corners {
+        border-radius: 3px;
+        padding: 4px;
+        width: 40px;
+        height: 30px;
+    }
+
+    .rp_float_left {
+        float: left;
+    }
+    .rp_float_right {
+        float: right;
+    }
+</style>
+
+<div id="rp_product_rate_calculator" class="price-box">
+
+    <?php
+        $price = $this->getProductPrice();
+        $url = $this->getUrl("produktratenrechner/ratenrechner/runtime", array('_secure' => true));
+        $defaultRuntime = $this->getDefaultRuntime();
+        if (!$this->isDefaultRuntimeOnly()) {
+            $runtimes = $this->getRuntimes();
+        } else {
+            $runtimes = $defaultRuntime;
+        }
+    ?>
+
+    <div id="rp_header">
+        <!--<p class="rp_headline">Zahlen Sie bequem per Ratenzahlung</p>-->
+
+        <p id="rp_prr_text" class="rp_conditions" style="font-size: larger;"><?php echo current($defaultRuntime); ?></p>
+
+    </div>
+
+    <div id="rp_body">
+
+    <?php
+        // 2 columns
+        $columns = [
+            1, 3
+        ];
+        // 3 columns
+        $columns = [
+            2
+        ];
+        // 6 columns
+        $columns = [
+
+        ];
+
+        $counter = 1;
+        $last = count($runtimes);
+        $active = ' rp_rate_month_button_active';
+        $class = '';
+        if (count($runtimes) > 1 && count($runtimes) <= 6) {
+            foreach($runtimes as $rate => $text) {
+                // First
+                if($counter == 1) {
+                    echo '<div class="rp_choose_rate_months">';
+                }
+
+                // Active
+                if(key($defaultRuntime) == $rate) {
+                    $class = $active;
+                } else {
+                    $class = '';
+                }
+
+                echo '<input type="button" class="rp_rate_month_buttons rp_rounded_corners'.$class.'" value="'.$rate.'" /> ';
+
+                // Delimter
+                /*if(in_array($key, $columns)) {
+                    echo '</div>';
+                    echo '<div class="rp_choose_rate_months">';
+                }*/
+
+                // Last
+                if($counter == $last) {
+                    echo '</div>';
+                }
+
+                $counter++;
+            }
+        } elseif (count($runtimes) > 6) {
+            $onchange = "rpSwitchRuntime(this.options[this.selectedIndex].text)";
+
+            echo '<div class="rp_choose_rate_months">';
+            echo '<select name="rp_choose_rate" id="rp_choose_rate" onchange="'.$onchange.'" size="1">';
+            foreach($runtimes as $rate => $text) {
+                // Active
+                if($defaultRuntime == $rate) {
+                    $selected = ' selected';
+                } else {
+                    $selected = '';
+                }
+
+                echo '<option value="'.$rate.'" '.$selected .'>'.$rate.'</option>';
+            }
+            echo '</select>';
+            echo '</div>';
+        }
+    ?>
+
+    </div>
+</div>
+
+<script>
+    var runtimes = JSON.parse('<?php echo json_encode($runtimes) ?>');
+
+    rpAddBtnMousedownListener();
+
+    function rpAddBtnMousedownListener()
+    {
+        var selector, elements;
+
+        selector = '#rp_product_rate_calculator input';
+
+        elements = document.querySelectorAll(selector);
+
+        for (var i = 0; i < elements.length; i++)
+            elements[i].addEventListener('mousedown', function () {
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].classList.remove('rp_rate_month_button_active');
+                }
+                this.classList.add('rp_rate_month_button_active');
+
+                rpSwitchRuntime(this.value);
+            });
+    }
+
+    function rpSwitchRuntime(currentRuntime) {
+        document.getElementById("rp_prr_text").innerHTML = runtimes[currentRuntime];
+    }
+</script>

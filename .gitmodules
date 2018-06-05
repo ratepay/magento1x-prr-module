@@ -1,0 +1,4 @@
+[submodule "app/code/community/RatePAY/ProduktRatenrechner/Model/Library"]
+	path = app/code/community/RatePAY/ProduktRatenrechner/Model/Library
+	url = https://github.com/ratepay/php-library.git
+	branch = master

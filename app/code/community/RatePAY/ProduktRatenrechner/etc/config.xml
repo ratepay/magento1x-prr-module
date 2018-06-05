@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+
+<config>
+
+    <modules>
+        <RatePAY_ProduktRatenrechner>
+            <version>1.0.0</version>
+        </RatePAY_ProduktRatenrechner>
+    </modules>
+
+    <global>
+        <blocks>
+            <produktratenrechner>
+                <class>RatePAY_ProduktRatenrechner_Block</class>
+            </produktratenrechner>
+        </blocks>
+
+        <helpers>
+            <produktratenrechner>
+                <class>RatePAY_ProduktRatenrechner_Helper</class>
+            </produktratenrechner>
+        </helpers>
+
+        <models>
+            <produktratenrechner>
+                <class>RatePAY_ProduktRatenrechner_Model</class>
+            </produktratenrechner>
+        </models>
+
+        <resources>
+            <ratepay_setup>
+                <setup>
+                    <module>RatePAY_ProduktRatenrechner</module>
+                </setup>
+
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ratepay_setup>
+
+            <ratepay_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ratepay_write>
+
+            <ratepay_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ratepay_read>
+        </resources>
+
+    </global>
+
+    <default>
+        <catalog>
+            <ratepay_prr_de>
+                <active>0</active>
+                <text><![CDATA[Bezahlen Sie bequem in <b>{runtime}</b> Raten je <b>{price} €</b>]]></text>
+                <sandbox>1</sandbox>
+            </ratepay_prr_de>
+            <ratepay_prr_at>
+                <active>0</active>
+                <text><![CDATA[Bezahlen Sie bequem in <b>{runtime}</b> Raten je <b>{price} €</b>]]></text>
+                <sandbox>1</sandbox>
+            </ratepay_prr_at>
+        </catalog>
+    </default>
+
+    <frontend>
+        <layout>
+            <updates>
+                <produktratenrechner>
+                    <file>ratepay_prr.xml</file>
+                </produktratenrechner>
+            </updates>
+        </layout>
+
+        <translate>
+            <modules>
+                <RatePAY_ProduktRatenrechner>
+                    <files>
+                        <default>RatePAY_Prr.csv</default>
+                    </files>
+                </RatePAY_ProduktRatenrechner>
+            </modules>
+        </translate>
+
+        <routers>
+            <produktratenrechner>
+                <use>standard</use>
+                <args>
+                    <module>RatePAY_ProduktRatenrechner</module>
+                    <frontName>ratepay_produktratenrechner</frontName>
+                </args>
+            </produktratenrechner>
+        </routers>
+
+    </frontend>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <ratepaypayment before="Mage_Adminhtml">RatePAY_ProduktRatenrechner_Adminhtml</ratepaypayment>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+
+        <translate>
+            <modules>
+                <RatePAY_ProduktRatenrechner>
+                    <files>
+                        <default>RatePAY_Prr.csv</default>
+                    </files>
+                </RatePAY_ProduktRatenrechner>
+            </modules>
+        </translate>
+
+    </adminhtml>
+
+</config>
