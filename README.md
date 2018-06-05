@@ -15,7 +15,7 @@
 * clone recursive repository
 
 ````bash
-git clone --recursive https://github.com/ratepay/magento1.7-produktratenrechner-module.git
+git clone --recursive https://github.com/ratepay/magento1x-prr-module.git
 ````
 * update submodule
 ````bash
