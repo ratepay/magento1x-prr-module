@@ -104,7 +104,7 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <ratepaypayment before="Mage_Adminhtml">RatePAY_ProduktRatenrechner_Adminhtml</ratepaypayment>
+                        <produktratenrechner before="Mage_Adminhtml">RatePAY_ProduktRatenrechner_Adminhtml</produktratenrechner>
                     </modules>
                 </args>
             </adminhtml>
