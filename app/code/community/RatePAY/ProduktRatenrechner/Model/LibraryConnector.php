@@ -14,7 +14,7 @@
  * to license@magentocommerce.com so we can send you a copy immediately.
  *
  * @category RatePAY
- * @package RatePAY_Ratepaypayment
+ * @package RatePAY_ProduktRatenrechner
  * @copyright Copyright (c) 2015 RatePAY GmbH (https://www.ratepay.com)
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  */
@@ -111,7 +111,7 @@ class RatePAY_ProduktRatenrechner_Model_LibraryConnector extends RatePAY_Produkt
             'Systems' => [
                 'System' => [
                     'Name' => "Magento_" . $edition,
-                    'Version' => Mage::getVersion() . '_' . (string) Mage::getConfig()->getNode()->modules->RatePAY_Ratepaypayment->version // @ToDo: Move this to helper
+                    'Version' => Mage::getVersion() . '_' . (string) Mage::getConfig()->getNode()->modules->RatePAY_ProduktRatenrechner->version // @ToDo: Move this to helper
                 ]
             ]
         ];
