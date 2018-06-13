@@ -31,7 +31,7 @@ class RatePAY_ProduktRatenrechner_Model_Source_Defaultruntime
         $path = 'catalog/ratepay_prr_de/runtimes';
         $result = Mage::getStoreConfig($path, $storeId);
 
-        $runtimes = [];
+        $runtimes = ["NULL" => "-"];
         foreach (explode(',', $result) as $runtime) {
             $runtimes[$runtime] = $runtime;
         }
