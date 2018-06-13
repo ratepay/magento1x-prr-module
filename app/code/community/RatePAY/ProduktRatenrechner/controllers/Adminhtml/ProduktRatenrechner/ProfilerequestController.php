@@ -79,8 +79,6 @@ class RatePAY_ProduktRatenrechner_Adminhtml_ProduktRatenrechner_ProfilerequestCo
         $coreConfig->saveConfig('catalog/' . $method . '/service_charge', $installmentConfig['service-charge']);
         $coreConfig->saveConfig('catalog/' . $method . '/payment_firstday', $installmentConfig['valid-payment-firstdays']);
 
-        $coreConfig->saveConfig('catalog/' . $method . '/default_runtime', strstr($installmentConfig['month-allowed'], ',', true));
-
         return 1;
     }
 
