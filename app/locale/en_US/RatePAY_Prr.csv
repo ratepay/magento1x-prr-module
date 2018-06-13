@@ -23,7 +23,7 @@
 "Interest Rate", "Sollzinsatz p.a."
 "Service Charge", "Servicegebühr"
 "Runtimes", "Monatliche Laufzeiten"
-"Default Runtime", "Standard-Laufzeit"
+"Default Runtime", "Standardlaufzeit"
 "Help Default Runtime", "Diese Laufzeit wird vorausgewählt auf der Produktseite angezeigt. Wenn die Laufzeit nicht möglich ist, wird die längst mögliche Laufzeit angeboten."
 "Default Runtime Only", "Nur Standard-Laufzeit"
 "Help Default Runtime Only", "Wenn nur die Standard-Laufzeit angeboten werden soll. Wenn die Laufzeit nicht möglich ist, wird die längst mögliche Laufzeit angeboten."
